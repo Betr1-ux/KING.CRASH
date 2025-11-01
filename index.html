@@ -7,129 +7,197 @@
 <style>
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0d001a;
+    font-family: 'Cairo', sans-serif;
+    background: radial-gradient(circle at center, #2b0000 0%, #0d0000 100%);
     color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    overflow: hidden;
   }
-  .card {
+
+  /* ===== واجهة تسجيل الدخول ===== */
+  #loginBox {
+    background: linear-gradient(135deg, #330000, #660000);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255,0,0,0.6), inset 0 0 20px rgba(255,50,50,0.4);
+    width: min(90vw, 420px);
     text-align: center;
-    background: #1a0033;
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0 0 20px rgba(255,102,204,0.4);
-    width: min(95vw, 500px);
+    animation: glowRed 4s infinite alternate;
     position: relative;
   }
-  h1 { color: #ff66cc; font-size: 26px; margin-bottom: 15px; }
+
+  @keyframes glowRed {
+    0% { box-shadow: 0 0 20px rgba(255,0,0,0.4), inset 0 0 20px rgba(255,50,50,0.4); }
+    100% { box-shadow: 0 0 35px rgba(255,0,0,0.9), inset 0 0 30px rgba(255,50,50,0.7); }
+  }
+
+  #loginBox h1 {
+    color: #ff3333;
+    font-size: 28px;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px #ff0000;
+  }
+
   .input {
-    width: 100%; height: 44px; border: none; border-radius: 10px;
-    margin: 6px 0; padding: 0 10px; text-align: center; font-size: 16px;
-  }
-  .error { display: none; color: #ff4b4b; font-weight: 700; margin: 6px 0; }
-  button {
-    padding: 12px 24px; border: none; border-radius: 10px;
-    background: #ff66cc; color: #fff; font-size: 16px;
-    cursor: pointer; font-weight: bold;
-  }
-  button:hover { opacity: .9; }
-
-  /* الدائرة */
-  .circle {
-    width: 280px; height: 280px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #330066, #000);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    margin: 25px auto;
-    font-weight: bold;
-    font-size: 16px;
-    color: #ff66cc;
-    text-shadow: 0 0 6px #ff33cc;
-    box-shadow: 0 0 25px rgba(255,0,255,0.7);
-    animation: pulse 2s infinite alternate, glow 5s infinite linear;
-    padding: 20px;
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    margin: 8px 0;
+    padding: 0 10px;
     text-align: center;
-  }
-  @keyframes pulse {
-    from { transform: scale(1); }
-    to { transform: scale(1.08); }
-  }
-  @keyframes glow {
-    0% { box-shadow: 0 0 25px #ff00ff; }
-    25% { box-shadow: 0 0 25px #00ffff; }
-    50% { box-shadow: 0 0 25px #ffcc00; }
-    75% { box-shadow: 0 0 25px #00ff00; }
-    100% { box-shadow: 0 0 25px #ff00ff; }
-  }
-
-  #circleText {
-    font-size: 26px;
-  }
-
-  .circle small {
-    font-size: 13px;
+    font-size: 16px;
+    background: rgba(40,0,0,0.9);
     color: #fff;
-  }
-  .attempts {
-    margin: 10px 0;
-    color: #00ffff;
-    font-weight: bold;
+    box-shadow: inset 0 0 10px rgba(255,0,0,0.4);
   }
 
-  /* زرار التليجرام */
+  .error {
+    display: none;
+    color: #ff5555;
+    font-weight: 700;
+    margin: 6px 0;
+  }
+
+  button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    text-shadow: 0 0 8px #ff3333;
+    box-shadow: 0 0 15px rgba(255,0,0,0.6);
+    transition: 0.3s;
+  }
+
+  button:hover {
+    box-shadow: 0 0 25px rgba(255,0,0,0.9);
+    transform: scale(1.05);
+  }
+
   .telegram-btn {
     position: absolute;
     bottom: -70px;
     left: 50%;
     transform: translateX(-50%);
-    background: #0088cc;
+    background: #ff0000;
     border-radius: 50%;
     width: 60px;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(0,136,204,0.6);
+    box-shadow: 0 0 15px rgba(255,0,0,0.8);
     cursor: pointer;
     transition: 0.3s;
   }
-  .telegram-btn:hover { background: #00aaff; }
-  .telegram-btn img {
-    width: 30px; height: 30px;
+
+  .telegram-btn:hover { background: #ff3333; }
+  .telegram-btn img { width: 30px; height: 30px; }
+
+  /* ===== واجهة اللعبة ===== */
+  #gameBox {
+    text-align: center;
+    background: radial-gradient(circle at center, #ff0000 0%, #1a0000 100%);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255,0,0,0.7);
+    width: min(95vw, 500px);
+    display: none;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #gameBox h1 {
+    color: #fff;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px #ff3333;
+  }
+
+  /* ===== الدائرة (الإطار الأخضر × الأصفر) ===== */
+  .circle {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    position: relative;
+    margin: 25px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    text-shadow: 0 0 10px #ff3366;
+  }
+
+  .circle::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 6px solid transparent;
+    border-top: 6px solid #00ff00;
+    border-right: 6px solid #ffff00;
+    border-bottom: 6px solid #00ff00;
+    border-left: 6px solid #ffff00;
+    animation: rotate 3s linear infinite;
+    box-shadow: 0 0 20px #00ff00, 0 0 25px #ffff00;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  #circleText {
+    font-size: 16px;
+    padding: 10px;
+    z-index: 2;
+  }
+
+  .attempts {
+    margin-top: 20px;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .attempts b {
+    color: #00ff00;
   }
 </style>
 </head>
 <body>
 
 <!-- تسجيل الدخول -->
-<div id="loginBox" class="card">
+<div id="loginBox">
   <h1>تسجيل الدخول</h1>
   <input id="userId" class="input" type="text" placeholder="ID" />
   <input id="code" class="input" type="text" placeholder="Code" autocomplete="one-time-code" />
   <div id="errorMsg" class="error">كود خطأ أو انتهى</div>
   <button onclick="login()">تأكيد</button>
 
-  <!-- زر التليجرام -->
   <a href="https://t.me/Loty122" target="_blank" class="telegram-btn">
     <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"/>
   </a>
 </div>
 
 <!-- واجهة اللعبة -->
-<div id="gameBox" class="card" style="display:none;">
+<div id="gameBox">
   <h1>KING CRASH</h1>
-  
   <div class="circle">
-    <div id="circleText"></div>
-    <small id="circleMsg">
-     Pemo1x غير متصل ب سيرفر البروموكود <b></b><br>
-      اوتاكد من عمل الإيداع <b>400 جنيه</b> حتى يتم إظهار التوقعات لك
-    </small>
+    <div id="circleText">
+      Pemo1x غير متصل بسيرفر البروموكود<br>
+      تأكد من عمل الإيداع <b>400 جنيه</b><br>حتى يتم إظهار التوقعات لك
+    </div>
   </div>
-
   <div class="attempts">المحاولات: <b id="attempts">0</b></div>
   <button onclick="nextStep()">Next</button>
 </div>
@@ -138,16 +206,14 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
   import { getDatabase, ref, get, update } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
-  // ✅ الفايرباس الجديد
   const firebaseConfig = {
-    apiKey: "AIzaSyDKTdLk6hyEBucKNaMTFISuGkAcnW2WB90",
-    authDomain: "gooa-6c940.firebaseapp.com",
-    databaseURL: "https://gooa-6c940-default-rtdb.firebaseio.com",
-    projectId: "gooa-6c940",
-    storageBucket: "gooa-6c940.appspot.com",
-    messagingSenderId: "360012764563",
-    appId: "1:360012764563:web:8ac01ac2d48e82f6c3c1f8",
-    measurementId: "G-V7MT1R8B1W"
+    apiKey: "AIzaSyD08Eud45qyQH8vV6lRQYyDhpvBY5ZXRbE",
+    authDomain: "king-admin-1a7ca.firebaseapp.com",
+    databaseURL: "https://king-admin-1a7ca-default-rtdb.firebaseio.com",
+    projectId: "king-admin-1a7ca",
+    storageBucket: "king-admin-1a7ca.firebasestorage.app",
+    messagingSenderId: "942166600491",
+    appId: "1:942166600491:web:1962bba7655ddd0926b36e"
   };
 
   const app = initializeApp(firebaseConfig);
@@ -163,7 +229,7 @@
 
     if (!userId || !codeInput) {
       errorMsg.style.display = "block";
-      errorMsg.textContent = "ID ادخل الكود و";
+      errorMsg.textContent = "ادخل الـ ID والكود";
       return;
     }
 
@@ -215,12 +281,12 @@
   }
 
   window.nextStep = () => {
-    document.getElementById("circleMsg").innerHTML = `
-      Pemo1x غير متصل ب سيرفر البروموكود <b></b><br>
-      اوتاكد من عمل الإيداع <b>400 جنيه</b> حتى يتم إظهار التوقعات لك
+    document.getElementById("circleText").innerHTML = `
+      Pemo1x غير متصل بسيرفر البروموكود<br>
+      تأكد من عمل الإيداع <b>400 جنيه</b><br>حتى يتم إظهار التوقعات لك
     `;
     deductAttempt();
   };
 </script>
 </body>
-  </html>
+</html>
